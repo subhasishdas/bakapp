@@ -16,4 +16,12 @@ HashMap<String,String> response = new HashMap<String,String>();
 		String error="Sorry, couldn't find any answer";
 		return response.get(s)==null?error:response.get(s);
 	}
+	public String findWord(String s) {
+		if(s.contains("book"))
+			return "book";
+		if(s.contains("hotel"))
+			return "hotel";
+		else
+			return s.substring(0, 2);
+	}
 }

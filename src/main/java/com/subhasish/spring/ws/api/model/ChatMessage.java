@@ -38,13 +38,13 @@ public class ChatMessage {
 		this.type = type;
 	}
 	
-	public ChatMessage sendMessageToReceiver(Rsa rsa, ChatMessage chatMessage) {
+	public ChatMessage sendMessageToReceiver(Rsa rsa, ChatMessage chatMessage,String msg) {
 		BigInteger message=new BigInteger(chatMessage.getContent());
 		BigInteger decrypt = rsa.decrypt(message);
 		byte[] b=decrypt.toByteArray();
 		String string = new String(b);
-		chatMessage.setContent(string);
-		System.out.println("Decrypted "+ string);
+		System.out.println("Decrypted "+ chatMessage.getContent());
+		chatMessage.setContent(msg);
 		return chatMessage;
 	}
 

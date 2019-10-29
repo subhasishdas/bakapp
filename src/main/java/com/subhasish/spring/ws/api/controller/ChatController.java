@@ -16,6 +16,9 @@ import com.subhasish.spring.ws.api.rsa.Rsa;
 public class ChatController {
 
 	Rsa rsa = new Rsa(50);
+	AutoResponse ar = new AutoResponse();
+	
+	String chatMessages;
 	
 	@MessageMapping("/chat.register")
 	@SendTo("/topic/public")
@@ -28,19 +31,22 @@ public class ChatController {
 	@SendTo("/topic/public")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		String s = chatMessage.getContent();
+		chatMessages=s;
        byte[] bytes = s.getBytes();
        BigInteger message = new BigInteger(bytes);
        BigInteger encrypt = rsa.encrypt(message);
        chatMessage.setContent(encrypt.toString());
 		System.out.println("Encrypted" + encrypt.toString());
+		//chatMessage.setContent(chatMessages);
        //sendMessageToReceiver(chatMessage);
-		return new ChatMessage().sendMessageToReceiver(rsa, chatMessage);
+		return new ChatMessage().sendMessageToReceiver(rsa, chatMessage, chatMessages);
 	}
 
 	@MessageMapping("/chat1.send")
 	@SendTo("/topic/public")
 	public ChatMessage sendAutoMessage(@Payload ChatMessage chatMessage) {
-		String s = chatMessage.getContent();
+		String s = chatMessage.getContent().toLowerCase();
+		s=ar.findWord(s);
 	       byte[] bytes = s.getBytes();
 	       BigInteger message = new BigInteger(bytes);
 	       BigInteger encrypt = rsa.encrypt(message);
@@ -48,4 +54,5 @@ public class ChatController {
 		chatMessage.setContent(new AutoResponse().getResponse(encrypt.toString()));
 		return chatMessage;
 	}
+	
 }
