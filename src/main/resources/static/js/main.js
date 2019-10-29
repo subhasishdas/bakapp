@@ -8,11 +8,12 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var cs=document.getElementsByName("customersupport");
 
 var stompClient = null;
 var username = null;
 
-var customerSupport=false;
+
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -67,7 +68,7 @@ function send(event) {
         };
 
         stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
-        if(!customerSupport)
+        if(!cs[0].checked)
         {
         	for(var i=0;i<1000000;i++);
         	autoResponse(messageContent);

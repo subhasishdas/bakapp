@@ -3,8 +3,13 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+<title>Spring Boot WebSocket Chat Application</title>
 <link rel="stylesheet" href="/css/main.css" />
+<style>
+	div.r{
+	text-align:right;
+	}
+</style>
 </head>
 <body background="simple1.jpg"
 	style="background-position: center; background-repeat: no-repeat; background-size: cover;">
@@ -19,6 +24,7 @@
 				<div class="form-group">
 					<input type="text" id="name" placeholder="Username"
 						autocomplete="off" class="form-control" />
+					<input type="radio" name="customersupport" id="customersupport">Customer Support<br>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="accent username-submit">Start
@@ -33,6 +39,9 @@
 			<div class="chat-header">
 				<h2>RSA Encrypted Chat Application</h2>
 			</div>
+			<div class="r">
+			<a href="/" > Back to Login</a>
+			</div>
 			<div class="connecting">Connecting...</div>
 			<ul id="messageArea">
 
@@ -42,7 +51,8 @@
 					<div class="input-group clearfix">
 						<input type="text" id="message" placeholder="Type a message..."
 							autocomplete="off" class="form-control" />
-						<button type="submit" class="primary">Send</button>
+						<button type="submit" class="primary">Send</button><br>
+						
 					</div>
 				</div>
 			</form>
