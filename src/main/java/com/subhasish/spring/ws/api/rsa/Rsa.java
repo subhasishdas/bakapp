@@ -52,7 +52,7 @@ public class Rsa {
       //BigInteger message = new BigInteger(N-1, random);
 
       // create message by converting string to integer
-       String s = "book";
+       String s = "help";
        byte[] bytes = s.getBytes();
        BigInteger message = new BigInteger(bytes);
 
